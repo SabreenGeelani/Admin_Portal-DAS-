@@ -10,18 +10,56 @@ import { IoIosNotificationsOutline, IoIosLogOut } from "react-icons/io";
 export default function Outlet() {
   const location = useLocation();
 
-  // const Link = [
-  //   {
-  //     name: "Dashboard",
-  //     path: "/dashboard",
-  //     icon: RiHome5Line,
-  //   },
-  //   {
-  //     name: "Ptm Management",
-  //     path: "/ptm-management",
-  //     icon: PiUsersLight,
-  //   },
-  // ];
+  const Links = [
+    {
+      id: 0,
+      name: "Dashboard",
+      path: "/dashboard",
+      icon: RiHome5Line,
+    },
+    {
+      id: 1,
+      name: "PTM Management",
+      path: "/ptm-management",
+      icon: PiUserGearLight,
+    },
+    {
+      id: 2,
+      name: "User Management",
+      path: "/user-management",
+      icon: PiUsersLight,
+    },
+    {
+      id: 3,
+      name: "Manage Appointments",
+      path: "manage-appointments",
+      icon: CiCalendar,
+    },
+    {
+      id: 4,
+      name: "Class Management",
+      path: "/class-management",
+      icon: PiChalkboardTeacherLight,
+    },
+    {
+      id: 5,
+      name: "Location Management",
+      path: "/location-management",
+      icon: CiLocationOn,
+    },
+    {
+      id: 6,
+      name: "Notifications",
+      path: "/notifications",
+      icon: IoIosNotificationsOutline,
+    },
+    {
+      id: 7,
+      name: "Settings",
+      path: "/settings",
+      icon: CiSettings,
+    },
+  ];
   return (
     // <div>
     <div className="flex w-[30%]">
@@ -30,69 +68,23 @@ export default function Outlet() {
           <img src="src/assets/image 2.png" alt="" className="px-4 mb-6" />
           <nav className="px-4 font-medium text-gray-700">
             <ul className="mb-6">
-              <li>
-                <Link
-                  exact
-                  to="/dashboard"
-                  className={
-                    location.pathname === "/dashboard"
-                      ? "flex items-center gap-x-2 px-5 py-3 rounded-lg cursor-pointer bg-green-300/20  text-[#3EB049]"
-                      : "flex items-center gap-x-2 px-5 py-3 rounded-lg cursor-pointer"
-                  }
-                >
-                  <RiHome5Line className="text-2xl" />
-                  Dashboard
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/ptm-management"
-                  className={
-                    location.pathname === "/ptm-management"
-                      ? "flex items-center gap-x-2 px-5 py-3 rounded-lg cursor-pointer bg-green-300/20  text-[#3EB049]"
-                      : "flex items-center gap-x-2 px-5 py-3 rounded-lg cursor-pointer"
-                  }
-                >
-                  <PiUserGearLight className="text-2xl" />
-                  PTM Management
-                </Link>
-              </li>
-              <li className="flex items-center gap-x-2 px-5 py-3 rounded-lg cursor-pointer">
-                {/* <Link> */}
-                <CiCalendar className="text-2xl" />
-                Manage Appointments
-                {/* </Link> */}
-              </li>
-              <li className="flex items-center gap-x-2 px-5 py-3 rounded-lg cursor-pointer">
-                {/* <Link> */}
-                <PiUsersLight className="text-2xl" />
-                User Management
-                {/* </Link> */}
-              </li>
-              <li className="flex items-center gap-x-2 px-5 py-3 rounded-lg cursor-pointer">
-                {/* <Link> */}
-                <PiChalkboardTeacherLight className="text-2xl" />
-                Class Management
-                {/* </Link> */}
-              </li>
-              <li className="flex items-center gap-x-2 px-5 py-3 rounded-lg cursor-pointer">
-                {/* <Link> */}
-                <CiLocationOn className="text-2xl" />
-                Location Management
-                {/* </Link> */}
-              </li>
-              <li className="flex items-center gap-x-2 px-5 py-3 rounded-lg cursor-pointer">
-                {/* <Link> */}
-                <IoIosNotificationsOutline className="text-2xl" />
-                Notifications
-                {/* </Link> */}
-              </li>
-              <li className="flex items-center gap-x-2 px-5 py-3 rounded-lg cursor-pointer">
-                {/* <Link> */}
-                <CiSettings className="text-2xl" />
-                Settings
-                {/* </Link> */}
-              </li>
+              {Links.map((link) => {
+                return (
+                  <li key={link.id}>
+                    <Link
+                      to={link.path}
+                      className={
+                        location.pathname === link.path
+                          ? "flex items-center gap-x-2 px-5 py-3 rounded-lg cursor-pointer bg-green-300/20  text-[#3EB049]"
+                          : "flex items-center gap-x-2 px-5 py-3 rounded-lg cursor-pointer"
+                      }
+                    >
+                      <link.icon className="text-2xl" />
+                      {link.name}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
             <button className="flex items-center gap-x-2 px-5 py-3 rounded-lg cursor-pointer">
               <IoIosLogOut className="text-2xl text-black" />
